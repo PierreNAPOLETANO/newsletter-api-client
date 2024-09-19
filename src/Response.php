@@ -61,12 +61,9 @@
          */
         public function datas()
         {
-            if (isset($this->body['data']))
-            {
-                return $this->body['data'];
-            }
-
-            return $this->body;
+            return isset($this->body['data'])
+                ? $this->body['data']
+                : $this->body;
         }
 
         /**
@@ -75,13 +72,9 @@
          */
         public function errors()
         {
-            if (isset($this->body['error']))
-            {
-                $json_error = current($this->body['error']);
-                return json_decode($json_error, true);
-            }
-
-            return false;
+            return isset($this->body['error'])
+                ? json_decode(current($this->body['error']), true)
+                : false
         }
 
         /**
